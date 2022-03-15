@@ -1,0 +1,216 @@
+<html>
+       <head>
+	          <title>Registration</title>
+			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+			  <style type="text/css">
+			  
+			  body{
+			       margin:0 auto;
+				   font-family:Arial, Helvetica, sans-serif; 
+				   margin:0;
+				   padding:0;
+				   }
+			
+             .login_background{
+			      background-image:url("login_background.jpg");
+				  height:822px;
+				  background-repeat:no-repeat;
+				  background-size:cover; 
+				  
+				  }
+				  
+				  #logo{
+				     font-size:600%;
+					 position:relative;
+					 top:50px;
+					 margin:0px 0px 0px 50px;
+					 color:black;
+				
+				}
+				
+				 #subLogo{
+				        color:black;
+						position:relative;
+						top:60px;
+						margin:20px 0px 0px 70px;
+						font-size:250%;
+					
+ 			} 
+
+              .login_box{
+			            width:500px;
+						height:650px;
+						position:relative;
+						top:-150px;
+						left:650px;
+						border:2px black solid;
+						}
+             
+               .center{
+			           margin:auto;
+			       }			 
+           
+		        .upper_reg{
+				           height:30px;
+						   border-bottom-color:black;
+						   border-bottom-style:solid;
+						   border-bottom-width:2px;
+						   text-align:center;
+						   font-size:180%;
+				    }
+				#restriction{
+				             position:relative;
+							 top:-18px;
+							 color:green;
+				
+				}
+		   
+                .input{
+				      position:relative;
+					top:8px;
+					left:0px;
+					margin:20px 0px 10px 0px;
+			        font-size:150%;
+					float:right;
+					padding:5px;
+					border-radius:8px;
+					   }		   
+				   
+			  label{
+			        float:left;
+					position:relative;
+					top:15px;
+					margin:25px 0px 15px 30px;
+			        font-size:150%;
+					
+					 }
+					 
+			 a{
+			        text-decoration:none;
+			   }
+          
+             a:hover{
+			          text-decoration:underline;
+                      color:red;				
+					}		  
+			 		 
+					 
+			  .button{
+			           position:relative;
+					top:8px;
+					left:30px;
+					margin:20px 0px 10px 0px;
+			        font-size:150%;
+					align:center;
+					padding:5px; 
+					border-radius:8px;
+			  }	
+
+             #error{
+			        margin:15px 0px 0px 20px;
+			        height:60px;
+					
+					font-size:100%;
+					color:red;
+					
+			 
+			 } 			  
+			  </style>
+	   </head>
+       <body>
+	   <div class="login_background">
+	       <div id="logo">@Maya.com</div>
+			    <p id="subLogo">Ready for learning.</p>    
+	             
+	   
+	        <div class="login_box">
+		   
+		      <div class="upper_reg">
+			      <p id="restriction">Registration</p>
+			  </div>
+			  
+	          <label for="email">Email ID</label>
+              <input type="text" name="email" class="input" id="email" placeholder="ex. name@gamil.com">
+			  <label for="name" id="name">Name</label>
+              <input type="text" name="name" class="input" id="name" placeholder="eg. vishal sehra">
+			  <label for="phone">Phone number</label>
+              <input type="tel" name="phone" class="input" id="phone" placeholder="1234567890">
+			  <label for="password">Password</label>
+			  <input type="password" name="password" class="input" id="password">
+			  <label for="confornPassword">Conform <br> password</label>
+			  <input type="password" name="conformPassword" class="input" id="conformPassword">
+			  <input type="submit"   name="button" class="button"  id="button" align="center">
+			   <div id="error"></div>
+			  <label for="log in">if you have allready account? <a href="login.html" class="login">log in</a></label>
+			 
+		   </div>
+		   
+       </div>
+	   
+			<script type="text/javascript">
+			 
+			     function isEmail(email) {
+                       var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                       return regex.test(email);
+                           };
+						   
+			 	 function validatePhone(txtPhone) {
+              
+                        var filter = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+                        if (filter.test(txtPhone) && txtPhone.length=="10") {
+                              return true;
+                             }
+                               else {
+                                      return false;
+                                  }
+                                }; 
+				  function pageRedirect() {
+                                window.location.href = "registrationSuccese.html";
+                                     } 
+									 
+			     $("#button").click(function(){
+				                   
+				                 var name_of_user =$("#name").value;
+                                  sessionStorage.setItem("name_of_user",name_Of_User);								 
+								  
+				                 if((isEmail($("#email").val())==false) && (validatePhone($("#phone").val())==false) && ($("#password").val() != $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" ")){
+								            $("#error").html("<P>"+"Please enter a valid email and mobile number."+"</p>" + "<p>"+" Conform password dose not match to password."+"</p>" );
+								 }
+								 
+								   else if((isEmail($("#email").val())==true) && (validatePhone($("#phone").val())==false) && ($("#password").val() != $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" ")){
+								             $("#error").html("<P>"+"Please enter a valid mobile number."+"</p>" + "<p>"+" Conform password dose not match to password."+"</p>" );
+							     } 
+								 
+                                   else if((isEmail($("#email").val())==false) && (validatePhone($("#phone").val())==true) && ($("#password").val() != $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" "))
+								   {									
+											 $("#error").html("<P>"+"Please enter a valid email ."+"</p>" + "<p>"+" Conform password dose not match to password."+"</p>" );    
+								 }
+								  else if((isEmail($("#email").val())==true) && (validatePhone($("#phone").val())==true) && ($("#password").val() != $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" ")) {
+								          $("#error").html("<p>"+" Conform password dose not match to password."+"</p>" );
+								  }
+                                    else if((isEmail($("#email").val())==false) && (validatePhone($("#phone").val())==false) && ($("#password").val() == $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" "))	
+                                   {
+								          $("#error").html("<P>"+"Please enter a valid email or number ."+"</p>");
+								   }
+                                     else if((isEmail($("#email").val())==true) && (validatePhone($("#phone").val())==false) && ($("#password").val() == $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" ")){
+									      $("#error").html("<P>"+"Please enter a valid number ."+"</p>"); 
+									 
+									        }
+                                      else if((isEmail($("#email").val())==false) && (validatePhone($("#phone").val())==true) && ($("#password").val() == $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" ")) {
+									      $("#error").html("<P>"+"Please enter a valid email ."+"</p>"); 
+									  
+									  }
+                                       else if((isEmail($("#email").val())==true) && (validatePhone($("#phone").val())==true) && ($("#password").val() == $("#conformPassword").val()) && ((($("#password").val) && ($("#conformPassword").val)) !=" ")){
+									          setTimeout("pageRedirect()", 1000);
+											 }								  
+								                   
+									   
+									   
+                    });
+                     
+                        					 
+							   
+			   </script>
+       </body>
+</html>	   
